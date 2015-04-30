@@ -50,7 +50,7 @@ sio.on("connection", function (socket){
 						return;
 					}
 					// Send message back to sender that the todo was added
-					socket.emit("success");
+					socket.emit("success", result);
 					// Send message to other clients that a new todo was added
 					socket.broadcast.emit("todos", result);
 				});

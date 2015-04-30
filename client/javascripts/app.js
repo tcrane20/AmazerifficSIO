@@ -237,7 +237,7 @@ var main = function (toDoObjects) {
 
 
 	// Response from server that only the sender will receive
-	socket.on("success", function(){
+	socket.on("success", function(result){
 		// Creates a notification that the new Todo was successfully added
 		var n = noty({
 			text: "You added a new task!",
@@ -252,6 +252,12 @@ var main = function (toDoObjects) {
 			},
 			timeout: 5000,
 			killer: true
+		});
+		// Receive all ToDo objects in database and save them in memory
+		toDoObjects = result;
+		// update toDos
+		toDos = toDoObjects.map(function (toDo) {
+			return toDo.description;
 		});
 	});
 
